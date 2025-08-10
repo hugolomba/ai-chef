@@ -22,14 +22,19 @@ export default function Main() {
     }
 
 
-function addIngredient(formData) {
-        const newIngredient = formData.get("ingredient")
-        setIngredients(prevIngredients => [...prevIngredients, newIngredient])
+function addIngredient(event) {
+    event.preventDefault();
+    console.log("eveeeeeeent", event.target)
+    const formData = new FormData(event.target);
+    console.log("formData", formData)
+    const newIngredient = formData.get("ingredient");
+    setIngredients(prevIngredients => [...prevIngredients, newIngredient]);
+    event.target.reset(); 
     }
 
     return (
         <main>
-                <form action={addIngredient} className="add-ingredient-form">
+                <form onSubmit={addIngredient} className="add-ingredient-form">
                 <input
                     type="text"
                     placeholder="e.g. oregano"
