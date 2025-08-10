@@ -1,7 +1,9 @@
+import chefLogo from '../images/chef-claude-icon.png';
+
 export default function Header() {
     return(
            <header>
-        <img src="./images/chef-claude-icon.png" alt="logo of a chef" />
+        <img src={chefLogo} alt="logo of a chef" />
         <h1>AI Chef</h1>
       
       </header>
