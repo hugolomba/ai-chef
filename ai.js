@@ -8,6 +8,8 @@ You are an assistant that receives a list of ingredients that a user has and sug
 const process = import.meta.env.VITE_API_KEY
 const hf = new InferenceClient(process)
 
+console.log(process);
+
 export async function getRecipeFromMistral(ingredientsArr) {
     const ingredientsString = ingredientsArr.join(", ")
     try {
