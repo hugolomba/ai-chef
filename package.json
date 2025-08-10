@@ -1,6 +1,6 @@
 {
-  "name": "Scrim-s06ipc4",
-  "description": "https://scrimba.com/fullstack-path-c0fullstack/~04dj",
+  "name": "ai-chef-app",
+  "description": "",
   "scripts": {
     "start": "vite",
     "dev": "vite",

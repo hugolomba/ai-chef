@@ -2,6 +2,7 @@ import React from "react"
 import Recipe from "./Recipe"
 import IngredientList from "./IngredientList"
 import {getRecipeFromMistral} from "../ai"
+import Loading from "./Loading"
 
 
 export default function Main() {
@@ -9,16 +10,19 @@ export default function Main() {
     const [ingredients, setIngredients] = React.useState([])
     // const [recipeShown, setRecipeShown] = React.useState(false)
     const [recipe, setRecipe] = React.useState("")
+    const [isLoading, setIsLoading] = React.useState(false)
 
    
 
     const ingredientsListItems = ingredients.map(ingredient => (
-        <li key={ingredient}>{ingredient}</li>
+        <li key={ingredient + Math.random()}>{ingredient}</li>
     ))
     
     async function getRecipe() {
+        setIsLoading(true)
         const recipeFromMistral = await getRecipeFromMistral(ingredients)
         setRecipe(recipeFromMistral)
+        setIsLoading(false)
     }
 
 
@@ -32,7 +36,7 @@ function addIngredient(event) {
 
     return (
         <main>
-                <form onSubmit={addIngredient} className="add-ingredient-form">
+                {!recipe && !isLoading ? <form onSubmit={addIngredient} className="add-ingredient-form">
                 <input
                     type="text"
                     placeholder="e.g. oregano"
@@ -40,9 +44,9 @@ function addIngredient(event) {
                     name="ingredient"
                 />
                 <button>Add ingredient</button>
-            </form>
-            {ingredients.length > 0 && <IngredientList ingredients={ingredients} getRecipe={getRecipe} ingredientsListItems={ingredientsListItems} /> }
-            {recipe && <Recipe recipe={recipe} />}
+            </form> : !isLoading && <button onClick={() => document.location.reload()}>Start Again</button>}
+            {ingredients.length > 0 && !isLoading && <IngredientList ingredients={ingredients} getRecipe={getRecipe} ingredientsListItems={ingredientsListItems} recipe={recipe} isLoading={isLoading}/> }
+            {isLoading ? <Loading /> : recipe && <Recipe recipe={recipe} />}
         </main>
     )
 }
