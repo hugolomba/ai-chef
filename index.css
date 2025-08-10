@@ -60,6 +60,7 @@ button {
     width: 9.375rem;
     font-size: 0.875rem;
     font-weight: 500;
+    padding: 0.5rem;
 }
 
 .add-ingredient-form > button::before {
@@ -144,5 +145,7 @@ ul.ingredients-list > li {
 @media (max-width: 900px) {
   body {
     font-size: 1.7rem;
+    flex-direction: column;
+    align-items: center;
   }
 }
