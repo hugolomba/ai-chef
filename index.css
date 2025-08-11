@@ -145,7 +145,11 @@ ul.ingredients-list > li {
 @media (max-width: 900px) {
   body {
     font-size: 1.7rem;
+  }
+  .add-ingredient-form {
     flex-direction: column;
     align-items: center;
+    width: 80%;
   }
+
 }

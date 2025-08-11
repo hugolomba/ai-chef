@@ -12,7 +12,13 @@ export default function Main() {
     const [recipe, setRecipe] = React.useState("")
     const [isLoading, setIsLoading] = React.useState(false)
 
-   
+    const recipeSection = React.useRef(null)
+    
+    React.useEffect(() => {
+        if (recipe !== "" && recipeSection.current !== null)
+            recipeSection.current.scrollIntoView({ behavior: "smooth" })
+            console.log("recipeSection", recipeSection.current)
+    }, [recipe])
 
     const ingredientsListItems = ingredients.map(ingredient => (
         <li key={ingredient + Math.random()}>{ingredient}</li>
@@ -46,7 +52,7 @@ function addIngredient(event) {
                 <button>Add ingredient</button>
             </form> : !isLoading && <button onClick={() => document.location.reload()}>Start Again</button>}
             {ingredients.length > 0 && !isLoading && <IngredientList ingredients={ingredients} getRecipe={getRecipe} ingredientsListItems={ingredientsListItems} recipe={recipe} isLoading={isLoading}/> }
-            {isLoading ? <Loading /> : recipe && <Recipe recipe={recipe} />}
+            {isLoading ? <Loading /> : recipe && <Recipe  recipe={recipe} recipeSection={recipeSection} />}
         </main>
     )
 }
