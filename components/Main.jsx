@@ -10,7 +10,7 @@ export default function Main() {
     const [ingredients, setIngredients] = React.useState([])
     // const [recipeShown, setRecipeShown] = React.useState(false)
     const [recipe, setRecipe] = React.useState("")
-    const [isLoading, setIsLoading] = React.useState(false)
+    const [isLoading, setIsLoading] = React.useState(true)
 
     const recipeSection = React.useRef(null)
     
